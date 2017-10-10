@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Zone Téléchargement</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body>
+	<h1>Zone Téléchargement</h1>
+	<form action="/results.html" method="POST">
+		<label for="search">Recherche</label>
+		<input type="text">
+		<button class="btn waves-effect waves-light" type="submit" name="action">Chercher</button>
+	</form>
+	<ul id="liste"></ul>
+</body>
+<script type="text/javascript">
+	var socket = io.connect('http://localhost:3000');
+	socket.on("monsocket", function(socket) {
+    console.log(socket);
+    var ul =  document.getElementById("liste");
+    var li = document.createElement('li');
+    li.innerHTML = socket;
+    ul.appendChild(li);
+	});
+</script>
+</html>
